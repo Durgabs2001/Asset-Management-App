@@ -1,0 +1,15 @@
+.hero{ 
+  background-image:url("assets/asset_background.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 100px 20px;
+  text-align: center;
+  
+}
+.forms{
+  background-image: url("assets/form_back.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
