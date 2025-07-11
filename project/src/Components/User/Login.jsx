@@ -43,7 +43,7 @@ function Login() {
         <div>
             <div className='container-fluid forms min-vh-100 d-flex justify-content-center align-items-center '>
 
-                <form className='justify-content-center  bg-light m-3 w-25' onSubmit={validate}>
+                <form className='justify-content-center  bg-light m-3 w-50' onSubmit={validate}>
                     <h1 className='text-center text-dark mx-5 my-2'>Welcome to Asset Booking</h1><br></br>
                     <div className="mb-3">
                         <label className="form-label mx-5 ">Email</label>

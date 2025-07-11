@@ -18,6 +18,11 @@ import MyBookings from './Components/User/MyBookings';
 import Bookingdetails from './Components/User/Bookingdetails';
 import Profile from './Components/User/Profile';
 import Chat from './Components/User/Chat';
+import ResourceManagement from './Components/Admin/ResourceManagement';
+import EditResource from './Components/Admin/EditResource';
+import AddResource from './Components/Admin/AddResource';
+import BookingManagement from './Components/Admin/BookingManagement';
+import UserManagement from './Components/Admin/UserManagement';
 
 function App() {
   return (
@@ -38,6 +43,11 @@ function App() {
         <Route path='/bookinginfo' element={<Bookingdetails/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/chat' element={<Chat/>}></Route>
+        <Route path='/manage_resource' element={<ResourceManagement/>}></Route>
+        <Route path='/edit_resource' element={<EditResource/>}></Route>
+        <Route path='/add_resource' element={<AddResource/>}></Route>
+        <Route path='/manage_booking' element={<BookingManagement/>}></Route>
+        <Route path='/manage_user' element={<UserManagement/>}></Route>
       </Routes>
     </div>
     </BrowserRouter>

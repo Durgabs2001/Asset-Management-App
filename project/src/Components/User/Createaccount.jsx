@@ -58,7 +58,7 @@ function Createaccount() {
     return (
         <div>
             <div className='container-fluid forms min-vh-100 d-flex justify-content-center align-items-center '>
-                <form className='justify-content-center  bg-light m-3 w-25' onSubmit={handleSubmit}>
+                <form className='justify-content-center  bg-light m-3 w-50' onSubmit={handleSubmit}>
                     <h1 className='text-center text-dark mx-2 my-2'> Create Account</h1><br></br>
                     <div className="mb-3">
                         <label className="form-label mx-5 ">Full Name</label>

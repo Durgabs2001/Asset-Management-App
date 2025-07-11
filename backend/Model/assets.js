@@ -14,7 +14,8 @@ const assetSchema=mongoose.Schema({
         default:"Available"
     },
     assetimage:String,
-    description:String
+    description:String,
+    location:String
 })
 const asset=mongoose.model("assets",assetSchema)
 module.exports=asset;

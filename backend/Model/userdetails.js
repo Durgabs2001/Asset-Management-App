@@ -13,7 +13,8 @@ const usermodel=mongoose.Schema({
         type:String,
         required:true
     },
-    profile:String
+    profile:String,
+    role:String
 
 })
 module.exports=mongoose.model("userdetails",usermodel)
