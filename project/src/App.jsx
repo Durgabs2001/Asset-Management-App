@@ -23,6 +23,9 @@ import EditResource from './Components/Admin/EditResource';
 import AddResource from './Components/Admin/AddResource';
 import BookingManagement from './Components/Admin/BookingManagement';
 import UserManagement from './Components/Admin/UserManagement';
+import AddUser from './Components/Admin/AddUser';
+import Reporting from './Components/Admin/Reporting';
+import Maintenance from './Components/Admin/Maintenance';
 
 function App() {
   return (
@@ -38,7 +41,7 @@ function App() {
         <Route path='/create_account' element={<Createaccount/>}></Route>
         <Route path='/user_dashboard' element={<UserDashboard/>}></Route>
         <Route path='/browse_resources' element={<BrowseResources/>}></Route>
-        <Route path='/booking' element={<Booking/>}></Route>
+        <Route path='/booking/:id' element={<Booking/>}></Route>
         <Route path='/mybookings' element={<MyBookings/>}></Route>
         <Route path='/bookinginfo' element={<Bookingdetails/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
@@ -48,6 +51,9 @@ function App() {
         <Route path='/add_resource' element={<AddResource/>}></Route>
         <Route path='/manage_booking' element={<BookingManagement/>}></Route>
         <Route path='/manage_user' element={<UserManagement/>}></Route>
+        <Route path='add_user' element={<AddUser/>}></Route>
+        <Route path='/reporting' element={<Reporting/>}></Route>
+        <Route path='/maintenance' element={<Maintenance/>}></Route>
       </Routes>
     </div>
     </BrowserRouter>

@@ -41,7 +41,7 @@ function AddResource() {
               </div><br></br>
               <div style={{float:"right"}}>
                 <button className='btn btn-secondary me-2'>Cancel</button>
-                <button className='btn btn-primary'>Add Resource</button>
+                <button className='btn btn-success'>Add Resource</button>
               </div><br></br>
               </form>
           </div>

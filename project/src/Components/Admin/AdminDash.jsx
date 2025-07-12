@@ -41,7 +41,7 @@ function AdminDash() {
                       </li>
                       <li className="mb-3 ">
                         <NavLink
-                          to="/"
+                          to="/manage_user"
                           className={({ isActive }) =>
                             "text-decoration-none text-light d-flex align-items-center gap-2" + (isActive ? "  fw-bold shadow-sm p-2" : "")
                           }
@@ -51,7 +51,7 @@ function AdminDash() {
                       </li>
                       <li className="mb-3 ">
                         <NavLink
-                          to="/"
+                          to="/reporting"
                           className={({ isActive }) =>
                             "text-decoration-none text-light d-flex align-items-center gap-2" + (isActive ? " fw-bold shadow-sm p-2" : "")
                           }
@@ -61,7 +61,7 @@ function AdminDash() {
                       </li>
                       <li className="mb-3 ">
                         <NavLink
-                          to="/"
+                          to="/maintenance"
                           className={({ isActive }) =>
                             "text-decoration-none text-light d-flex align-items-center gap-2" + (isActive ? " fw-bold shadow-sm p-2" : "")
                           }

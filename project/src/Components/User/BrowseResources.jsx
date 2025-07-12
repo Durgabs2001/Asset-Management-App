@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import instance from '../../Utils/axios'
 import defaultimage from '../../assets/asset_background.jpg'
 import Dash from './Dash'
@@ -33,6 +33,7 @@ function BrowseResources() {
                     <p >Type: {e.type}</p>
                     <p>Capacity:{e.capacity}</p>
                     <p>Description:</p>
+                    <Link to={`/booking/${e._id}`}  class="btn btn-primary">View Details and Book</Link>
                   </div>
                 </div>
               ))

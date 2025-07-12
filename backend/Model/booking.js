@@ -4,7 +4,7 @@ const bookingSchema=mongoose.Schema({
     end_date:Date,
     status:{
         type:String,
-         enum:["Confirmed","Waiting"]
+         enum:["Confirmed","Pending"]
     },
     user:{
         type:mongoose.Schema.Types.ObjectId,

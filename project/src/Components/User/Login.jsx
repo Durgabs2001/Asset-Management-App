@@ -23,10 +23,14 @@ function Login() {
                 email:email,
                 password:password
                }).then((res)=>{
-                if(res.data)
-                {
+                console.log(res.data)
+                if(res.data.admintoken){
+                    navigate("/admin_dashboard");
+                    localStorage.setItem("token",res.data.admintoken)
+                }
+                else if(res.data.token){
                     navigate("/user_dashboard");
-                    localStorage.getItem("token",res.data.token)
+                    localStorage.setItem("token",res.data.token)
                 }
                })
                .catch((err) => {
