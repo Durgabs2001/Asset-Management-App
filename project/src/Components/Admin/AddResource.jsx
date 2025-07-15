@@ -23,6 +23,7 @@ function AddResource() {
       await instance.post("/add_asset",formData,{headers:{"Content-Type":"multipart/form-data"}})
       alert("Resource added successfully")
       setResourceData({name:'',type:'',capacity:'',location:'',description:''})
+      navigate('/manage_resource')
 
     }
     catch(err){

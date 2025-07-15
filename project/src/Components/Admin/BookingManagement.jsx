@@ -5,7 +5,17 @@ import { useEffect } from 'react'
 import instance from '../../Utils/axios'
 
 function BookingManagement() {
-  
+  const [data,setData]=useState([])
+  useEffect(()=>{
+    const token=localStorage.getItem("token")
+    instance.get("/view_booking")
+    .then((res)=>{
+      setData(res.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  },[])
   return (
     <div className='container-fluid' style={{ height: "100vh" }}>
       <div className='row h-100'>
@@ -41,13 +51,13 @@ function BookingManagement() {
                 </tr>
               </thead>
               <tbody>
-                {//data.map((e) => (
+                {data.map((e) => (
                   <tr style={{ border: " 1px solid" }}>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}></td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}></td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}></td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}></td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}></td>
+                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.asset.name}</td>
+                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.user.username}</td>
+                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.start_date}</td>
+                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.end_date}</td>
+                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.status}</td>
                     <td style={{ border: " 1px solid", width: "40px", textAlign: "center" }}>
                       <div className="d-flex justify-content-center align-items-center gap-2">
                         <button className="btn btn-sm p-2 border-0 bg-transparent">
@@ -59,7 +69,7 @@ function BookingManagement() {
                       </div>
                     </td>
                   </tr>
-                   //))
+                   ))
                 }
               </tbody>
             </table>

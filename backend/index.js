@@ -10,6 +10,7 @@ app.use(cors());
 app.use(userlogin)
 app.use(manage_asset)
 app.use(book_assets)
+app.use("/assetuploads",express.static("assetuploads"))
 app.listen(3000,()=>{
     console.log("Server running at port 3000")
 })

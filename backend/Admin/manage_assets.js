@@ -1,5 +1,6 @@
 const express = require("express")
 const assetmodel = require("../Model/assets")
+const booking=require("../Model/booking")
 const router = express.Router()
 const jwt=require("jsonwebtoken")
 var multer = require('multer');
@@ -81,5 +82,33 @@ router.get("/view_asset/:id",async(req,res)=>{
       const asset=await assetmodel.findOne({_id:cid})
       res.send(asset)
 })
+router.delete("/delete_asset/:id",async (req,res)=>{
+  if(!req.headers.authorization)
+  {
+      res.status(400).json({ message: "error" })
+      return;
+  }
+   token = req.headers.authorization.slice(7)
+  let data = jwt.verify(token, process.env.JWT_KEY)
+  const cid = req.params.id
+  try{
+    const del=await assetmodel.deleteOne({_id:cid},{ new: true }).exec()
+    res.send({message:"success"})
+  }
+  catch(err)
+  {
+    console.log(err)
+    res.send(err)
+  }
+})
+router.get("/view_booking",async (req,res)=>{
+     if (!req.headers.authorization) {
+          return res.status(401).json({ message: "Unauthorized" });
+      }
+       const token = req.headers.authorization.slice(7);
+      const data = jwt.verify(token, process.env.JWT_KEY);
+      const book= await booking.find().populate("asset").populate("user");
+      return res.json(book)
+  })
 
 module.exports = router;
