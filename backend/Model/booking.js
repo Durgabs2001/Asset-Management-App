@@ -1,19 +1,32 @@
-const mongoose=require("mongoose")
-const bookingSchema=mongoose.Schema({
-    start_date:Date,
-    end_date:Date,
-    status:{
-        type:String,
-         enum:["Confirmed","Pending"]
-    },
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"userdetails"
-    },
-    assets:{
-         type:mongoose.Schema.Types.ObjectId,
-        ref:"assets"
-    }
-})
-const booking=mongoose.model("bookings",bookingSchema)
-module.exports=booking;
+const mongoose = require('mongoose');
+
+const bookingSchema = new mongoose.Schema({
+  start_date: {
+    type: Date,
+    required: true
+  },
+  end_date: {
+    type: Date,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ["Booked", "Pending"],
+    default: "Pending"
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "userdetails",
+    required: true
+  },
+  asset: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "assets",
+    required: true
+  }
+}, {
+  timestamps: true
+});
+
+const Booking = mongoose.model("bookings", bookingSchema);
+module.exports = Booking;

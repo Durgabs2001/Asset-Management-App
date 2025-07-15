@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 function Navbar() {
+    const navigate=useNavigate()
     return (
         <div>
            
@@ -39,7 +40,7 @@ function Navbar() {
                             </NavLink>
                         </div>
                     </div>
-                    <button className="btn btn-primary" style={{ marginLeft: "auto", marginRight: "10px" }}>Login</button>
+                    <Link className="btn btn-primary" style={{ marginLeft: "auto", marginRight: "10px" }} to={'/userlogin'}>Login</Link>
                 </div>
             </nav>
         </div>

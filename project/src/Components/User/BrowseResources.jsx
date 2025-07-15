@@ -28,11 +28,10 @@ function BrowseResources() {
               data.map((e, index) => (
                 <div className="col-md-4 mb-4" key={e._id || index}>
                   <div className="card p-3 h-100 shadow-sm">
-                     <img src={e.assetimage ? "http://localhost:3000/assetuploads/" + e.assetimage : defaultimage}  className="mx-auto" width="300px" height="200px" name="image"  alt="..."></img>
+                     <img src={e.assetimage ? "http://localhost:3000/assetuploads/" + e.assetimage : defaultimage}  className="mx-auto" width="300px" height="200px" name="assetimage"  alt="..."></img>
                     <h4 className='mx-auto'>{e.name}</h4>
-                    <p >Type: {e.type}</p>
-                    <p>Capacity:{e.capacity}</p>
-                    <p>Description:</p>
+                    <p >Type: {e.type} | Capacity:{e.capacity}</p>
+                    <p>{e.description}</p>
                     <Link to={`/booking/${e._id}`}  class="btn btn-primary">View Details and Book</Link>
                   </div>
                 </div>

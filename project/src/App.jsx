@@ -47,7 +47,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/chat' element={<Chat/>}></Route>
         <Route path='/manage_resource' element={<ResourceManagement/>}></Route>
-        <Route path='/edit_resource' element={<EditResource/>}></Route>
+        <Route path='/edit_asset/:id' element={<EditResource/>}></Route>
         <Route path='/add_resource' element={<AddResource/>}></Route>
         <Route path='/manage_booking' element={<BookingManagement/>}></Route>
         <Route path='/manage_user' element={<UserManagement/>}></Route>

@@ -1,7 +1,11 @@
 import React from 'react'
 import AdminDash from './AdminDash'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import instance from '../../Utils/axios'
 
 function BookingManagement() {
+  
   return (
     <div className='container-fluid' style={{ height: "100vh" }}>
       <div className='row h-100'>
@@ -55,7 +59,7 @@ function BookingManagement() {
                       </div>
                     </td>
                   </tr>
-                  // ))
+                   //))
                 }
               </tbody>
             </table>
