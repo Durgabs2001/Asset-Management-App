@@ -19,7 +19,7 @@ function EditResource() {
      const token=localStorage.getItem("token")
     instance.get(`/view_asset/${id}`,{
     headers: { Authorization: `Bearer ${token}` }
-  },[id])
+  })
     .then((res)=>{
       setData(res.data)
     })

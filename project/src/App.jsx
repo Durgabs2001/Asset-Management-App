@@ -26,6 +26,7 @@ import UserManagement from './Components/Admin/UserManagement';
 import AddUser from './Components/Admin/AddUser';
 import Reporting from './Components/Admin/Reporting';
 import Maintenance from './Components/Admin/Maintenance';
+import EditUser from './Components/Admin/EditUser';
 
 function App() {
   return (
@@ -51,9 +52,10 @@ function App() {
         <Route path='/add_resource' element={<AddResource/>}></Route>
         <Route path='/manage_booking' element={<BookingManagement/>}></Route>
         <Route path='/manage_user' element={<UserManagement/>}></Route>
-        <Route path='add_user' element={<AddUser/>}></Route>
+        <Route path='add_users' element={<AddUser/>}></Route>
         <Route path='/reporting' element={<Reporting/>}></Route>
         <Route path='/maintenance' element={<Maintenance/>}></Route>
+        <Route path='/edit_users/:id' element={<EditUser/>}></Route>
       </Routes>
     </div>
     </BrowserRouter>
