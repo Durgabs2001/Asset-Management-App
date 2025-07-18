@@ -181,5 +181,22 @@ router.get("/view_booking",async (req,res)=>{
   const user=await users.findOne({_id:cid})
   res.send(user)
   })
+  router.delete("/delete_user/:id",async (req,res)=>{
+     if (!req.headers.authorization) {
+    return res.json({ message: "Unauthorised" })
+  }
+  console.log(req.headers.authorization)
+  const token = req.headers.authorization.slice(7)
+  const cid=req.params.id
+  try{
+    const del=await users.deleteOne({_id:cid},{ new: true }).exec()
+    res.send({message:"success"})
+  }
+  catch(err)
+  {
+    console.log(err)
+    res.send(err)
+  }
+  })
 
 module.exports = router;

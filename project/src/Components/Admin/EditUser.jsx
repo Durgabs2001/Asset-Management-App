@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminDash from './AdminDash'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import instance from '../../Utils/axios'
@@ -25,12 +25,9 @@ function EditUser() {
   const edituser=async (id)=>{
     try{
         const token=localStorage.getItem("token")
-        const formData=new FormData
-        formData.append("username",userdetails.username)
-        formData.append("email",userdetails.email)
-        formData.append("role",userdetails.role)
-        await instance.put(`/edit_users/${id}`,formData,{
-            headers: { 'Content-Type': 'multipart/form-data' }})
+        
+        await instance.put(`/edit_users/${id}`,userdetails,{
+            headers: {'Authorization': `Bearer ${token}`  }})
             alert("Edited successfully")
             navigate("/manage_user")
     }
@@ -56,19 +53,19 @@ function EditUser() {
                  <div className='row'>
                    <div className='col-md-6'>
                        <label>Full Name</label><br></br>
-                       <input type='text' name='username' className='w-100 mt-2 ' onChange={handleChange} value={userdetails.username}></input>
+                       <input type='text' name='username' className='w-100 mt-2 ' onChange={handleChange} value={userdetails.username||""}></input>
                    </div>
                    <div className='col-md-6'>
                        <label>Email address</label><br></br>
-                       <input type='email' name='email' className='w-100 mt-2' onChange={handleChange} value={userdetails.email}></input>
+                       <input type='email' name='email' className='w-100 mt-2' onChange={handleChange} value={userdetails.email||""}></input>
                    </div>
                  </div>
                  <div className='row'>
                    <label className='mt-3'>Role</label><br></br>
-                   <input type='text' className='ms-3 mt-2' style={{width:"97%"}} name='role' onChange={handleChange} value={userdetails.role}></input>
+                   <input type='text' className='ms-3 mt-2' style={{width:"97%"}} name='role' onChange={handleChange} value={userdetails.role||""}></input>
                  </div><br></br>
                  <div style={{float:"right"}}>
-                   <button className='btn btn-secondary me-2'>Cancel</button>
+                   <Link  to={'/manage_user'}className='btn btn-secondary me-2'>Cancel</Link>
                    <button className='btn btn-success'>Edit User</button>
                  </div><br></br>
                  </form>

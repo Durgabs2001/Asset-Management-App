@@ -17,6 +17,22 @@ function UserManagement() {
       console.log(err)
     })
   },[])
+  const handleDelete=async(id)=>{
+       const confirmDelete = window.confirm("Are you sure you want to delete this asset?");
+      if (!confirmDelete) return;
+      try{
+        const token=localStorage.getItem("token")
+        await instance.delete(`/delete_user/${id}`, {
+              headers: { Authorization: `Bearer ${token}` }
+          })
+        alert("Asset deleted succesfully")
+      }
+      catch(err){
+        console.error("Delete failed:", err);
+        alert("Failed to delete the asset.");
+      }
+  
+    }
   return (
     
    <div className='container-fluid' style={{ height: "100vh" }}>
@@ -64,7 +80,7 @@ function UserManagement() {
                         <Link to={`/edit_users/${e._id}`} className="btn btn-sm p-2 border-0 bg-transparent">
                           <i className="bi bi-pencil-fill text-primary"></i>
                         </Link>
-                        <button className="btn btn-sm p-2 border-0 bg-transparent">
+                        <button  onClick={()=>handleDelete(e._id)} className="btn btn-sm p-2 border-0 bg-transparent">
                           <i className="bi bi-trash-fill text-danger"></i>
                         </button>
                       </div>
