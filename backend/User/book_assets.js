@@ -87,5 +87,5 @@ router.post("/book_asset/:id",async (req,res)=>{
       const book= await booking.find({user:data.id}).populate("asset");
       return res.json(book)
   })
-
+  
 module.exports=router;

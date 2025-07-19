@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Dash from './Dash'
+import instance from '../../Utils/axios'
+import defaultimage from '../../assets/defaultprofile.jpg'
 
 function Profile() {
+    const [details,setUserdetails]=useState([])
+    useEffect(()=>{
+        const token=localStorage.getItem("token")
+        instance.get("/viewprofile")
+        .then((res)=>{
+            setUserdetails(res.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    },[])
   return (
     <div>
         <div className='container-fluid ' style={{ height: "100vh" }}>
@@ -13,9 +26,9 @@ function Profile() {
                         <h2 className='my-2'>MY PROFILE</h2>
                         <div className='container my-4'>
                             <div className='row justify-content-center border rounded p-3 container ms-1'>
-                                <img></img>
-                                <p className='text-center'>Name</p>
-                                <p className='text-center'>Email</p>
+                                 <img src={details.profile ? "http://localhost:3000/profileuploads/" + details.assetimage : defaultimage} style={{width: "200px",height:" auto"}}  className="mx-auto"  name="profile"  alt="..."></img>
+                                <h3 className='text-center'>{details.username}</h3>
+                                <p className='text-center'>{details.email}</p>
                                 <button className='btn btn-primary w-25 me-3'>Edit profile</button>
                                 <button className='btn btn-secondary w-25'>Change password</button>
                             </div><br></br>
