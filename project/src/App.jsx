@@ -27,6 +27,7 @@ import AddUser from './Components/Admin/AddUser';
 import Reporting from './Components/Admin/Reporting';
 import Maintenance from './Components/Admin/Maintenance';
 import EditUser from './Components/Admin/EditUser';
+import EditProfile from './Components/User/EditProfile';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path='/reporting' element={<Reporting/>}></Route>
         <Route path='/maintenance' element={<Maintenance/>}></Route>
         <Route path='/edit_users/:id' element={<EditUser/>}></Route>
+        <Route path='/edit-profile' element={<EditProfile/>}></Route>
       </Routes>
     </div>
     </BrowserRouter>

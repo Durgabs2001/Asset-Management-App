@@ -105,7 +105,7 @@ router.put("/editprofile", upload.single("profile"),async(req,res)=>{
         }
         const token = req.headers.authorization.slice(7);
         const data = jwt.verify(token, process.env.JWT_KEY);
-        const currentUser = await userlogin.findById(data.id);
+        const currentUser = await userdetails.findById(data.id);
         let updateData = {
             username: req.body.username,
             email: req.body.email,
@@ -113,7 +113,7 @@ router.put("/editprofile", upload.single("profile"),async(req,res)=>{
         };
 
        
-        let value = await userlogin.findByIdAndUpdate(data.id,updateData,{ new: true })
+        let value = await userdetails.findByIdAndUpdate(data.id,updateData,{ new: true })
         res.send(value);
 
 })

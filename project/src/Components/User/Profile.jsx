@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Dash from './Dash'
 import instance from '../../Utils/axios'
 import defaultimage from '../../assets/defaultprofile.jpg'
+import { Link } from 'react-router-dom'
 
 function Profile() {
     const [details,setUserdetails]=useState([])
@@ -29,7 +30,7 @@ function Profile() {
                                  <img src={details.profile ? "http://localhost:3000/profileuploads/" + details.assetimage : defaultimage} style={{width: "200px",height:" auto"}}  className="mx-auto"  name="profile"  alt="..."></img>
                                 <h3 className='text-center'>{details.username}</h3>
                                 <p className='text-center'>{details.email}</p>
-                                <button className='btn btn-primary w-25 me-3'>Edit profile</button>
+                                <Link  to={'/edit-profile'}className='btn btn-primary w-25 me-3'>Edit profile</Link>
                                 <button className='btn btn-secondary w-25'>Change password</button>
                             </div><br></br>
                              <h5 className='mt-3'>Recent Bookings</h5>
