@@ -5,17 +5,17 @@ import { useEffect } from 'react'
 import instance from '../../Utils/axios'
 
 function BookingManagement() {
-  const [data,setData]=useState([])
-  useEffect(()=>{
-    const token=localStorage.getItem("token")
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const token = localStorage.getItem("token")
     instance.get("/view_booking")
-    .then((res)=>{
-      setData(res.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  },[])
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
   return (
     <div className='container-fluid' style={{ height: "100vh" }}>
       <div className='row h-100'>
@@ -51,25 +51,44 @@ function BookingManagement() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((e) => (
-                  <tr style={{ border: " 1px solid" }}>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.asset.name}</td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.user.username}</td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.start_date}</td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.end_date}</td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.status}</td>
-                    <td style={{ border: " 1px solid", width: "40px", textAlign: "center" }}>
-                      <div className="d-flex justify-content-center align-items-center gap-2">
-                        <button className="btn btn-sm p-2 border-0 bg-transparent">
-                          <i className="bi bi-pencil-fill text-primary"></i>
-                        </button>
-                        <button className="btn btn-sm p-2 border-0 bg-transparent">
-                          <i className="bi bi-trash-fill text-danger"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                   ))
+                {data.map((e) => {
+                  const start = new Date(e.start_date).toLocaleTimeString('en-IN', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZone: 'Asia/Kolkata'
+                  });
+                  const end = new Date(e.end_date).toLocaleTimeString('en-IN', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZone: 'Asia/Kolkata'
+                  });
+
+                  const day = new Date(e.start_date).toLocaleDateString('en-IN', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    timeZone: 'Asia/Kolkata'
+                  });
+                  return (
+                    <tr style={{ border: " 1px solid" }}>
+                      <td style={{ border: " 1px solid", textAlign: "center" }}>{e.asset.name}</td>
+                      <td style={{ border: " 1px solid", textAlign: "center" }}>{e.user.username}</td>
+                      <td style={{ border: " 1px solid", textAlign: "center" }}>{day + '' + start}</td>
+                      <td style={{ border: " 1px solid", textAlign: "center" }}>{day + '' + end}</td>
+                      <td style={{ border: " 1px solid", textAlign: "center" }}>{e.status}</td>
+                      <td style={{ border: " 1px solid", width: "40px", textAlign: "center" }}>
+                        <div className="d-flex justify-content-center align-items-center gap-2">
+                          <button className="btn btn-sm p-2 border-0 bg-transparent">
+                            <i className="bi bi-pencil-fill text-primary"></i>
+                          </button>
+                          <button className="btn btn-sm p-2 border-0 bg-transparent">
+                            <i className="bi bi-trash-fill text-danger"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })
                 }
               </tbody>
             </table>

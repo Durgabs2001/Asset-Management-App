@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import AdminDash from './AdminDash'
+import instance from '../../Utils/axios'
 
 function AdminDashboard() {
+  const [data,setData]=useState([])
+  useEffect(()=>{
+    instance.get("/count")
+    .then((res)=>{
+      setData(res.data)
+      console.log(data)
+    })
+    .catch((err) => {
+        alert("No results found");
+        console.log(err);
+      });
+
+  },[])
   return (
     <div className='container-fluid' style={{ height: "100vh" }}>
       <div className='row h-100'>
@@ -25,7 +39,7 @@ function AdminDashboard() {
                     <i className='bi bi-archive text-primary fs-3 me-3'></i>
                     <div>
                       <h6 className='mb-0'>Total Resources</h6>
-                      <p className='text-bold mb-0'>Count</p>
+                      <p className='text-bold mb-0'>{data.resourcecount}</p>
                       <p>All physical assets</p>
                     </div>
                   </div>
@@ -38,7 +52,7 @@ function AdminDashboard() {
                     <i className='bi bi-calendar2-check-fill text-success fs-3 me-3'></i>
                     <div>
                       <h6 className='mb-0'>Active Bookings</h6>
-                      <p className='text-bold mb-0'>Count</p>
+                      <p className='text-bold mb-0'>{data.bookingcount}</p>
                       <p>Currently reserved resources</p>
                     </div>
                   </div>
@@ -66,7 +80,7 @@ function AdminDashboard() {
                 <div className='card shadow-sm p-2'>
                   <div className='card-body d-flex align-items-center'>
                     <i className='bi bi-plus-square text-primary fs-3 me-3'></i>
-                      <h6 className='mb-0'>Add New Resource</h6>
+                      <Link to={'/add_resource'} style={{textDecoration:"none",color:"black"}}><h6 className='mb-0' >Add New Resource</h6></Link>
                   </div>
                 </div>
               </div>
@@ -75,7 +89,7 @@ function AdminDashboard() {
                 <div className='card shadow-sm p-2'>
                   <div className='card-body d-flex align-items-center'>
                     <i className='bi bi-calendar text-success fs-3 me-3'></i>
-                      <h6 className='mb-0'>View All Bookings</h6>
+                     <Link to={'/manage_booking'} style={{textDecoration:"none",color:"black"}}><h6 className='mb-0'>View All Bookings</h6></Link> 
                   </div>
                 </div>
               </div>
@@ -83,7 +97,7 @@ function AdminDashboard() {
                 <div className='card shadow-sm p-2'>
                   <div className='card-body d-flex align-items-center'>
                     <i className='	bi bi-person text-secondary fs-3 me-3'></i>
-                      <h6 className='mb-0'>Manage Users</h6>
+                     <Link to={'/manage_user'} style={{textDecoration:"none",color:"black"}}> <h6 className='mb-0'>Manage Users</h6></Link>
                   </div>
                 </div>
               </div>

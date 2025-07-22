@@ -8,6 +8,7 @@ const bcrypt=require("bcrypt")
 var multer = require('multer');
 var path = require('path')
 const { check, validationResult } = require('express-validator');
+const { countReset } = require("console")
 
 
 var storage = multer.diskStorage({
@@ -198,5 +199,9 @@ router.get("/view_booking",async (req,res)=>{
     res.send(err)
   }
   })
+router.get("/count",async (req,res)=>{
+  let [resourcecount,bookingcount]=await Promise.all([assetmodel.countDocuments(),booking.countDocuments()])
+  res.json({resourcecount,bookingcount})
+})
 
 module.exports = router;

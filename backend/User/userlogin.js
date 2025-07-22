@@ -65,9 +65,11 @@ router.post("/user/verify", async (req, res) => {
     }
     else {
           if(req.body.email=="admin@gmail.com" && req.body.password=="admin123")
-             {
+             {  
+                 const login_time = new Date();
                  const admintoken=jwt.sign({email:req.body.email,password:req.body.password,},process.env.JWT_KEY)
-                 res.send({ admintoken })
+                 res.send({ admintoken,login_time })
+                 
              }
              else{
 
@@ -78,8 +80,10 @@ router.post("/user/verify", async (req, res) => {
                 res.status(400).json({ error: "error" })
             }
             if (result) {
+                const login_time = new Date();
                 const token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_KEY)
-                res.send({ token })
+                res.send({ token ,login_time})
+                
             }
             else {
                 res.status(400).send({ message: "Password incorrect" })

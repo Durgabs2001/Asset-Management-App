@@ -46,7 +46,6 @@ function EditProfile() {
                 console.log("Error fetching profile data:", err);
             });
   }
-   
     return (
         <div className='container-fluid' style={{ height: "100vh" }}>
             <div className='row h-100'>

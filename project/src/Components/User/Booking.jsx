@@ -26,8 +26,8 @@ function Booking() {
     }, [])
     const handleBooking = (e) => {
         const token = localStorage.getItem("token")
-        const start_date = `${booking.date}T${booking.starttime}`;
-        const end_date = `${booking.date}T${booking.endtime}`;
+        const start_date = `${booking.date} ${booking.starttime}`;
+        const end_date = `${booking.date}   ${booking.endtime}`;
 
         e.preventDefault()
         if (!booking.starttime || !booking.endtime) {

@@ -76,7 +76,7 @@ router.post("/book_asset/:id",async (req,res)=>{
 
     await newbooking.save();
     res.status(201).json({ message: 'Booking successful', booking });
-
+    
   });
   router.get("/view_booking",async (req,res)=>{
      if (!req.headers.authorization) {
@@ -85,6 +85,15 @@ router.post("/book_asset/:id",async (req,res)=>{
        const token = req.headers.authorization.slice(7);
       const data = jwt.verify(token, process.env.JWT_KEY);
       const book= await booking.find({user:data.id}).populate("asset");
+      return res.json(book)
+  })
+  router.get("/recent_booking",async (req,res)=>{
+     if (!req.headers.authorization) {
+          return res.status(401).json({ message: "Unauthorized" });
+      }
+       const token = req.headers.authorization.slice(7);
+      const data = jwt.verify(token, process.env.JWT_KEY);
+      const book= await booking.find({user:data.id}).populate("asset").limit(3).sort({ start_date: -1 });
       return res.json(book)
   })
   

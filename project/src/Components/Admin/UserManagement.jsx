@@ -74,7 +74,7 @@ function UserManagement() {
                     <td style={{ border: " 1px solid", textAlign: "center" }}>{e.username}</td>
                     <td style={{ border: " 1px solid", textAlign: "center" }}>{e.email}</td>
                     <td style={{ border: " 1px solid", textAlign: "center" }}>{e.role}</td>
-                    <td style={{ border: " 1px solid", textAlign: "center" }}></td>
+                    <td style={{ border: " 1px solid", textAlign: "center" }}>{e.login_time}</td>
                     <td style={{ border: " 1px solid", width: "40px", textAlign: "center" }}>
                       <div className="d-flex justify-content-center align-items-center gap-2">
                         <Link to={`/edit_users/${e._id}`} className="btn btn-sm p-2 border-0 bg-transparent">

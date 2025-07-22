@@ -14,7 +14,8 @@ const usermodel=mongoose.Schema({
         required:true
     },
     profile:String,
-    role:String
+    role:String,
+    login_time:Date
 
 })
 module.exports=mongoose.model("userdetails",usermodel)
