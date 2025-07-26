@@ -3,9 +3,11 @@ import Dash from './Dash'
 import instance from '../../Utils/axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 function MyBookings() {
     const [data, setData] = useState([])
+    const {id}=useParams()
     useEffect(() => {
         const token = localStorage.getItem("token")
         instance.get("/view_booking")
@@ -17,6 +19,21 @@ function MyBookings() {
                 console.log(err, "error")
             })
     }, [])
+    const handle_delete=async(id)=>{
+        const confirmDelete = window.confirm("Are you sure you want to cancel this booking?");
+    if (!confirmDelete) return;
+    try{
+      const token=localStorage.getItem("token")
+      await instance.delete(`/cancel_booking/${id}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+      alert(" Booking cancelled succesfully")
+    }
+    catch(err){
+      console.error("Delete failed:", err);
+      alert("Failed to cancel booking.");
+    }
+    }
     return (
         <div>
             <div className='container-fluid ' style={{ height: "100vh" }}>
@@ -62,7 +79,8 @@ function MyBookings() {
                                                         <i className='bi bi-clock text-primary fs-6 me-2'></i>
                                                         <p className='mb-0 fw-semibold'>{start} - {end}</p>
                                                     </div>
-                                                    <button className='btn btn-danger'>Cancel Booking</button>
+                                                    <button className='btn btn-danger me-2' onClick={()=>{handle_delete(e._id)}}>Cancel Booking</button>
+                                                    <Link className='btn btn-primary' to={`/bookinginfo/${e._id}`}>View Details</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,8 +124,8 @@ function MyBookings() {
                                                         <i className='bi bi-clock text-primary fs-6 me-2'></i>
                                                         <p className='mb-0 fw-semibold'>{start} - {end}</p>
                                                     </div>
-                                                    <button className='btn btn-secondary me-2'>Book Again</button>
-                                                     <button className='btn btn-primary'>View Details</button>
+                                                    <Link className='btn btn-secondary me-2' to={`/booking/${e.asset._id}`}>Book Again</Link>
+                                                     <Link className='btn btn-primary' >View Details</Link>
                                                     <p style={{color:'green'}}>Completed</p>
                                                 </div>
                                             </div>

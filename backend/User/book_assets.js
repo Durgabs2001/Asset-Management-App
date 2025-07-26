@@ -71,10 +71,14 @@ router.post("/book_asset/:id",async (req,res)=>{
       end_date: end,
       user,
       asset,
-      status: 'Booked'
+      status: 'Booked',
     });
 
     await newbooking.save();
+    await require('../Model/assets').findByIdAndUpdate(asset, {
+      availability: "Booked"
+    });
+
     res.status(201).json({ message: 'Booking successful', booking });
     
   });
@@ -95,6 +99,36 @@ router.post("/book_asset/:id",async (req,res)=>{
       const data = jwt.verify(token, process.env.JWT_KEY);
       const book= await booking.find({user:data.id}).populate("asset").limit(3).sort({ start_date: -1 });
       return res.json(book)
+  })
+  router.delete("/cancel_booking/:id",async(req,res)=>{
+    if (!req.headers.authorization) {
+          return res.status(401).json({ message: "Unauthorized" });
+      }
+       const token = req.headers.authorization.slice(7);
+      const data = jwt.verify(token, process.env.JWT_KEY);
+      const cid=req.params.id
+      try{
+        const del=await booking.deleteOne({_id:cid},{new:true})
+        res.send(del)
+      }
+      catch{
+        console.log(err)
+      }
+  })
+  router.get("/viewbooking/:id",async(req,res)=>{
+    if (!req.headers.authorization) {
+          return res.status(401).json({ message: "Unauthorized" });
+      }
+      const token = req.headers.authorization.slice(7);
+      const data = jwt.verify(token, process.env.JWT_KEY);
+      const cid=req.params.id
+     const view = await booking.findOne({ _id: cid }).populate("asset").populate("user"); 
+    if (!view) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+
+    res.json(view);
+
   })
   
 module.exports=router;

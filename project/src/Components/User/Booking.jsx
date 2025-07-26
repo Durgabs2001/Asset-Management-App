@@ -64,9 +64,7 @@ function Booking() {
                                 <div className="card p-3 h-100 shadow-sm">
                                     <img src={data.assetimage ? "http://localhost:3000/assetuploads/" + data.assetimage : defaultimage} className="mx-auto" width="300px" height="200px" name="image" alt="..."></img>
                                     <h4 className='py-2'>{data.name}</h4>
-                                    <p >Type: {data.type}</p>
-                                    <p>Capacity:{data.capacity}</p>
-                                    <p>{data.properties}</p>
+                                    <p>{data.capacity=='N/A'?data.type:data.capacity}</p>
                                     <p>{data.description}</p>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 function Homepage() {
     return (
@@ -101,15 +102,15 @@ function Homepage() {
                 </p>
 
                 <div className="d-flex justify-content-center">
-                    <button
+                    <Link to='/create_account'
                         className="btn px-4 py-2"
                         style={{
                             color: "white",
                             backgroundColor: "blue",
                             borderRadius: "25px"
-                        }}
-                    > Sign up for free
-                    </button>
+                        }}>Sign up for free
+                    </Link> 
+                    
                 </div>
             </div>
             <br></br>

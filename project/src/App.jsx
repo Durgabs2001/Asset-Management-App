@@ -45,7 +45,7 @@ function App() {
         <Route path='/browse_resources' element={<BrowseResources/>}></Route>
         <Route path='/booking/:id' element={<Booking/>}></Route>
         <Route path='/mybookings' element={<MyBookings/>}></Route>
-        <Route path='/bookinginfo' element={<Bookingdetails/>}></Route>
+        <Route path='/bookinginfo/:id' element={<Bookingdetails/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/chat' element={<Chat/>}></Route>
         <Route path='/manage_resource' element={<ResourceManagement/>}></Route>
